@@ -1,36 +1,40 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Service\Enum\PaymentType;
 use CPay\Sdk\Config\Credentials;
 use CPay\Sdk\Config\TransactionData;
-use CPay\Sdk\Exception\TransactionException;
 use CPay\Sdk\Payment;
 use CPay\Sdk\Transaction;
-use CPay\Sdk\TransactionResponse;
-use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class PaymentService
 {
     private ?Transaction $orangeTransaction = null;
 
-    public function __construct(private string $username, private string $password, private string $merchantId, private KernelInterface $kernel)
+    public function __construct(private string $username, private string $password, private string $merchantId)
     {
         if (null === $this->orangeTransaction) {
             $this->orangeTransaction = Payment::initWithCredentials(Credentials::from($this->username, $this->password, $this->merchantId));
         }
     }
 
-    public function pay(TransactionData $transactionData, callable $successCallable, callable $errorCallable): mixed
+    public function setPaymentType(PaymentType $paymentType): self
     {
-        $transaction = $this->orangeTransaction
-            ->useDevApi()
-            ->withTransactionData($transactionData);
-
-        if ($this->kernel->getEnvironment() == 'prod') {
-            $transaction->useProdApi();
+        if (PaymentType::FAKE === $paymentType) {
+            $this->orangeTransaction->useDevApi();
+        } else if (PaymentType::REAL === $paymentType) {
+            $this->orangeTransaction->useProdApi();
         }
-        return $transaction
+        return $this;
+    }
+
+    public function pay(TransactionData $transactionData, callable $successCallable, callable $errorCallable): JsonResponse
+    {
+        return $this->orangeTransaction
+            ->withTransactionData($transactionData)
             ->withoutSSLVerification()
             ->on($successCallable, $errorCallable);
     }
