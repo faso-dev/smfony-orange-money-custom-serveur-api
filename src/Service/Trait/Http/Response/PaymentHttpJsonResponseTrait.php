@@ -1,10 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Service\Trait\Http\Response;
 
-use CPay\Sdk\Exception\TransactionException;
 use CPay\Sdk\TransactionResponse;
-use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
