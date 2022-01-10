@@ -8,11 +8,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function sprintf;
 
-
+/**
+ * @Route("/", name="cpay_api_")
+ */
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'businessman_api')]
-    #[Route('/api/v1/', name: 'businessman_api_v1_doc')]
+
+    /**
+     * @Route("/api/v1/", name="v1_doc")
+     * @param Request $request
+     * @return Response
+     */
     public function index(Request $request): Response
     {
         $api_start_end_point = sprintf("%s", $request->getSchemeAndHttpHost());

@@ -2,8 +2,8 @@
 
 namespace App\Service\Enum;
 
-enum PaymentType : string
+class PaymentType
 {
-  case FAKE = 'FAKE';
-  case REAL = 'REAL';
+  const FAKE = 'FAKE';
+  const REAL = 'REAL';
 }

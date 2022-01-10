@@ -14,14 +14,14 @@ class PaymentService
 {
     private ?Transaction $orangeTransaction = null;
 
-    public function __construct(private string $username, private string $password, private string $merchantId)
+    public function __construct(string $username, string $password, string $merchantId)
     {
         if (null === $this->orangeTransaction) {
-            $this->orangeTransaction = Payment::initWithCredentials(Credentials::from($this->username, $this->password, $this->merchantId));
+            $this->orangeTransaction = Payment::initWithCredentials(Credentials::from($username, $password, $merchantId));
         }
     }
 
-    public function setPaymentType(PaymentType $paymentType): self
+    public function setPaymentType(string $paymentType): self
     {
         if (PaymentType::FAKE === $paymentType) {
             $this->orangeTransaction->useDevApi();

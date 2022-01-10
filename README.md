@@ -4,7 +4,7 @@ If you are looking for a solution to set up a proxy api server to use the ORANGE
 
 ## Requirement
 
-`>= PHP 8.1`
+`^ PHP 7.4`
 
 ## Setup
 

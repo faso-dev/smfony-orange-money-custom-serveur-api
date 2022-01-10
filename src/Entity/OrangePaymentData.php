@@ -4,8 +4,7 @@
 namespace App\Entity;
 
 use CPay\Sdk\Config\TransactionData;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class OrangePaymentData
 {
@@ -15,18 +14,24 @@ class OrangePaymentData
         'otp' => 'otp',
     ];
 
-    #[
-        NotBlank(message: 'Le numéro du client est obligatoire'),
-    ]
+
+    /**
+     * @var string|mixed|null
+     * @Assert\NotBlank(message="Le numéro du client est obligatoire")
+     */
     public ?string $clientNumber;
-    #[
-        NotBlank(message: 'Le montant de la transaction est obligatoire'),
-        Positive(message: 'Le montant de la transaction ne peut négatif'),
-    ]
+
+    /**
+     * @var string|mixed|null
+     * @Assert\NotBlank(message="Le montant de la transaction est obligatoire")
+     * @Assert\Positive(message="Le montant de la transaction ne peut être négatif")
+     */
     public ?string $paymentAmount;
-    #[
-        NotBlank(message: 'Le code otp est obligatoire')
-    ]
+
+    /**
+     * @var string|mixed|null
+     * @Assert\NotBlank(message="Le code otp est obligatoire")
+     */
     public ?string $otp;
 
     private function __construct(array $data)

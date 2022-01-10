@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Service\Trait\Http\Response;
+namespace App\Service\Traits\Http\Response;
 
 use CPay\Sdk\TransactionResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
