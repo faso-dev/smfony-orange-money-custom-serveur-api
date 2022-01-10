@@ -7,11 +7,16 @@
         "php": ">=8.0.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "choco-code/cpay": "2.0.0",
+        "doctrine/annotations": "^1.13",
+        "symfony/apache-pack": "^1.0",
         "symfony/console": "6.0.*",
         "symfony/dotenv": "6.0.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "6.0.*",
+        "symfony/maker-bundle": "^1.36",
         "symfony/runtime": "6.0.*",
+        "symfony/validator": "6.0.*",
         "symfony/yaml": "6.0.*"
     },
     "require-dev": {
