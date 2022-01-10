@@ -9,7 +9,7 @@ If you are looking for a solution to set up a proxy api server to use the ORANGE
 ## Setup
 
 ```shell
-git clone git@github.com:faso-dev/smfony-orange-money-customer-serveur-api.git
+git clone git@github.com:faso-dev/smfony-orange-money-custom-serveur-api.git
 ```
 
 ## Dependencies installation
