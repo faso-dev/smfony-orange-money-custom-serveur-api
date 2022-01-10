@@ -32,7 +32,7 @@ symfony server:start && symfony server:log
                 "url": "http-sheme://server-adress:port/api/v1/pay",
                 "method": "POST",
                 "headers": {
-                "Content-type": "application/json"
+                    "Content-type": "application/json"
                 },
                 "body_or_data": {
                     "client_number": "00000000",
