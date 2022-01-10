@@ -19,3 +19,28 @@ symfony server:start && symfony server:log
 ## End points
 
 `http(s)://server-adress:port/api/v1` to show how to use payment api
+
+## JS Users
+```json
+{
+	"message": "My custom serveur payment api",
+	"version": "v1",
+	"documentation": {
+		"version": "v1",
+		"make_payment_request": {
+			"with_fetch_or_axios": {
+				"url": "http-sheme://server-adress:port/api/v1/pay",
+				"method": "POST",
+				"headers": {
+					"Content-type": "application/json"
+				},
+				"body_or_data": {
+					"client_number": "00000000",
+					"payment_amount": "100",
+					"otp": "123456"
+				}
+			}
+		}
+	}
+}
+```
