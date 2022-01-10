@@ -7,7 +7,7 @@ use CPay\Sdk\Config\TransactionData;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Positive;
 
-class OrangeTransactionData
+class OrangePaymentData
 {
     public const VALIDATION_PROPERIES = [
         'clientNumber' => 'client_number',
@@ -29,11 +29,16 @@ class OrangeTransactionData
     ]
     public ?string $otp;
 
-    public function __construct(array $data)
+    private function __construct(array $data)
     {
         $this->clientNumber = $data['client_number'] ?? null;
         $this->paymentAmount = $data['payment_amount'] ?? null;
         $this->otp = $data['otp'] ?? null;
+    }
+
+    public static function createFromJsonData(array $data = []): self
+    {
+        return new self($data);
     }
 
     public function toOrangeTransactionData(): TransactionData

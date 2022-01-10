@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\OrangeTransactionData;
+use App\Entity\OrangePaymentData;
 use App\Service\PaymentService;
 use App\Service\PaymentTransactionDataValidatorService;
 use CPay\Sdk\TransactionResponse;
@@ -24,10 +24,10 @@ class ApiController extends AbstractController
     #[Route('pay', name: 'pay', methods: ['POST'])]
     public function index(Request $request): Response
     {
-        $data = new OrangeTransactionData(json_decode($request->getContent(), true) ?? []);
-        if (count($violations = $this->transactionDataValidatorService->validate($data)) === 0) {
+        $orangePaymentData = OrangePaymentData::createFromJsonData(json_decode($request->getContent(), true) ?? []);
+        if (count($violations = $this->transactionDataValidatorService->validate($orangePaymentData)) === 0) {
             return $this->paymentService->pay(
-                transactionData: $data->toOrangeTransactionData(),
+                transactionData: $orangePaymentData->toOrangeTransactionData(),
                 successCallable: fn(TransactionResponse $transactionResponse) => $this->onSuccessPaymentHttpJsonResponse($transactionResponse),
                 errorCallable: fn(string $errorMessage, int $statusCode) => $this->onFailedPaymentHttpJsonResponse($errorMessage, $statusCode)
             );
