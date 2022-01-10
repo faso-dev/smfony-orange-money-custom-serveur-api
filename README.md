@@ -20,7 +20,7 @@ composer install
 
 ## Configuration
 
-In the `.env` file, set theses variables : 
+In the `.env` file, set theses variables :
 ```
 ORANGE_MONEY_USERNAME=your orange money api username
 ORANGE_MONEY_PASSWORD=your orange money api password
@@ -40,24 +40,28 @@ symfony server:start && symfony server:log
 ## JS Users
 ```json
 {
-    "message": "My custom serveur payment api",
+  "message": "My custom serveur payment api",
+  "version": "v1",
+  "documentation": {
     "version": "v1",
-    "documentation": {
-        "version": "v1",
-        "make_payment_request": {
-            "with_fetch_or_axios": {
-                "url": "http-sheme://server-adress:port/api/v1/pay",
-                "method": "POST",
-                "headers": {
-                    "Content-type": "application/json"
-                },
-                "body_or_data": {
-                    "client_number": "00000000",
-                    "payment_amount": "100",
-                    "otp": "123456"
-                }
-           }
+    "make_payment_request": {
+      "end_points": {
+        "testing_in_dev_mode": "http-sheme://server-adress:port/api/v1/dev/pay",
+        "real_in_prod_mode": "http-sheme://server-adress:port/api/v1/pay"
+      },
+      "with_fetch_or_axios": {
+        "url": "end_point",
+        "method": "POST",
+        "headers": {
+          "Content-type": "application/json"
+        },
+        "body_or_data": {
+          "client_number": "00000000",
+          "payment_amount": "100",
+          "otp": "123456"
         }
+      }
     }
+  }
 }
 ```
