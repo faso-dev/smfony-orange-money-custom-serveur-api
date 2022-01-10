@@ -6,6 +6,8 @@ If you are looking for a solution to set up a proxy api server to use the ORANGE
 
 `>= PHP 8.1`
 
+If your server trun on `php 7.4` please use this [version](https://github.com/faso-dev/smfony-orange-money-custom-serveur-api/blob/php-7.4/README.md) 
+
 ## Setup
 
 ```shell
