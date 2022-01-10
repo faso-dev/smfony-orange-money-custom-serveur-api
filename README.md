@@ -1,5 +1,22 @@
 # Setup a CUSTOM ORANGE MONEY BURKINA SERVER REST API for testing or production
 
+If you are looking for a solution to set up a proxy api server to use the ORANGE MONEY Burkina API without having to configure several projects, you are at the right place.
+
+## Requirement
+
+`>= PHP 8.0`
+
+## Setup
+
+```shell
+git clone git@github.com:faso-dev/smfony-orange-money-customer-serveur-api.git
+```
+
+## Dependencies installation
+
+```shell
+composer install
+```
 
 ## Configuration
 
