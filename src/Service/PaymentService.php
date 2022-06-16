@@ -24,7 +24,9 @@ class PaymentService
     public function setPaymentType(PaymentType $paymentType): self
     {
         if (PaymentType::FAKE === $paymentType) {
-            $this->orangeTransaction->useDevApi();
+            $this->orangeTransaction
+                ->useDevApi()
+                ->withoutSSLVerification();
         } else if (PaymentType::REAL === $paymentType) {
             $this->orangeTransaction->useProdApi();
         }
@@ -35,7 +37,6 @@ class PaymentService
     {
         return $this->orangeTransaction
             ->withTransactionData($transactionData)
-            ->withoutSSLVerification()
             ->on($successCallable, $errorCallable);
     }
 }
